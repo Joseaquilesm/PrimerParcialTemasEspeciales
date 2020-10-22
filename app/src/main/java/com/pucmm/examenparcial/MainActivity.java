@@ -1,32 +1,25 @@
 package com.pucmm.examenparcial;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity {
-    //List view stuff
-    ListView listView;
+public class MainActivity extends FragmentActivity {
+ //public static int orientacion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        listView = (ListView) findViewById(R.id.listView1);
-
+       setContentView(R.layout.activity_main);
+        MenuFragment menuFragment = new MenuFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.conceptoLayout, menuFragment).commit();
     }
-    public void mostrarInfo(){
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    @Override
+    protected void onResume() {
+        super.onResume();
+   // orientacion = getResources().getConfiguration().orientation;
 
-            }
-        });
     }
 }
